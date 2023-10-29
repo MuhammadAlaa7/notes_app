@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'bottom_sheet_content.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
@@ -31,16 +32,13 @@ class AddNoteBottomSheet extends StatelessWidget {
               debugPrint('there is a failure ');
             } else if (state is AddNoteSuccessState) {
               Navigator.pop(context);
+              BlocProvider.of<GetNotesCubit>(context).getAllNotes();
             }
           },
           builder: (context, state) {
             // Things need to be built are here.
 
-            return ModalProgressHUD(
-              
-              inAsyncCall: state is AddNoteLoadingState ? true : false,
-              child: BottomSheetContent(),
-            );
+            return BottomSheetContent();
           },
         ),
       ),

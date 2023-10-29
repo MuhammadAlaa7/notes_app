@@ -5,7 +5,9 @@ class AddNoteButton extends StatelessWidget {
   const AddNoteButton({
     super.key,
     required this.onPressed,
+    this.isLoading = false  , 
   });
+    final bool isLoading ; 
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,10 @@ class AddNoteButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      child: const Text(
+      child: isLoading ?  const CircularProgressIndicator(
+        color: Colors.black,
+       
+      ) : const  Text(
         'Add',
         style: TextStyle(
           fontSize: 18,

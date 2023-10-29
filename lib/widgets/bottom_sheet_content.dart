@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_states.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/model/note.dart';
 import 'add_note_button.dart';
 import 'input_field.dart';
@@ -52,29 +57,36 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                   subTitle = value;
                 },
               ),
-              const SizedBox(height: 20),
-              AddNoteButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-              
-                    var note = Note(
-                      title: title!,
-                      subTitle: subTitle!,
-                      color: Colors.black.value,
-                      date: DateTime.now().toString(),
-                    );
-              
-                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                        FocusScope.of(context).unfocus();  // dismiss the keyboard 
-              
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                   setState(() {});
-                  }
+              const SizedBox(height: 10),
+              BlocBuilder<AddNoteCubit, AddNoteStates>(
+                builder: (context, state) {
+                return AddNoteButton(
+                 isLoading: state is AddNoteLoadingState ? true  : false ,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+
+                      var note = Note(
+                        title: title!,
+                        subTitle: subTitle!,
+                        color: Colors.orange.value,
+                        date: DateFormat.yMMMMd().format(DateTime.now()),
+                      );
+
+                      BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                      FocusScope.of(context).unfocus(); // dismiss the keyboard
+ 
+
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );   
                 },
+                
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 20),
             ],
           ),
         ),
