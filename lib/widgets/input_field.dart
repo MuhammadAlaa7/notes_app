@@ -4,29 +4,36 @@ import 'package:notes_app/constants.dart';
 class InputField extends StatelessWidget {
   const InputField({
     super.key,
-    required this.label,
+    this.label,
     required this.hint,
-    this.maxLines = 1, this.onSaved,
+    this.maxLines = 1,
+    this.onSaved,
+    this.onChanged,
+    this.isLabelFloating = true,
   });
-  final String label, hint;
+  final String hint;
+  final String? label;
   final int maxLines;
-  final void Function(String?)? onSaved ; 
+  final void Function(String?)? onSaved;
+  final void Function(String)? onChanged;
+  final bool isLabelFloating;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
-        onSaved: onSaved , 
+        onChanged: onChanged,
+        onSaved: onSaved,
         validator: (value) {
-              if( value?.isEmpty ?? true ) {
-                return 'Field is required '; 
-              }
-             return null ; 
+          if (value?.isEmpty ?? true) {
+            return 'Field is required ';
+          }
+          return null;
         },
         maxLines: maxLines,
         decoration: InputDecoration(
           label: Text(
-            label,
+            label ?? '',
             style: const TextStyle(
               color: kPrimaryColor,
             ),
@@ -35,6 +42,9 @@ class InputField extends StatelessWidget {
           enabledBorder: inputBorder(),
           border: inputBorder(),
           focusedBorder: inputBorder(kPrimaryColor),
+          floatingLabelBehavior: isLabelFloating
+              ? FloatingLabelBehavior.auto
+              : FloatingLabelBehavior.never,
         ),
       ),
     );

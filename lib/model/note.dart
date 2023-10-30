@@ -6,9 +6,9 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 0)
 class Note extends HiveObject {
   @HiveField(0)
-  final String title;
+   String? title;
   @HiveField(1)
-  final String subTitle;
+   String? subTitle;
   @HiveField(2)
   final int color;
   @HiveField(3)

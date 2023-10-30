@@ -8,9 +8,11 @@ import 'package:notes_app/model/note.dart';
 import 'view/home_view.dart';
 
 void main() async {
-  Bloc.observer = MyBlocObserver();
+
+
   await Hive.initFlutter();
   // here I register the type of object i will store by its adapter
+  Bloc.observer = MyBlocObserver();
   Hive.registerAdapter(NoteAdapter());
   await Hive.openBox<Note>('notes'); // here we open a box into database hive
   runApp(const NotesApp());
@@ -22,7 +24,9 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetNotesCubit(),
+
+      // CREATE THE CUBIT AND TRIGGER THE METHOD TO GET THE ALL NOTES ONCE THE APP IS OPPENED
+      create: (context) => GetNotesCubit()..getAllNotes(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

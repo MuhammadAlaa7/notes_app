@@ -19,22 +19,24 @@ class NoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const EditNoteView();
+          return EditNoteView(
+            note: note,
+          );
         }));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
         decoration: BoxDecoration(
-          color:  Color(note.color) , // const Color(0xffFFCD7C),
+          color: Color(note.color), // const Color(0xffFFCD7C),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title:  Text(
-                note.title,
+              title: Text(
+                note.title ?? 'Title',
                 style: const TextStyle(
                   fontSize: 22,
                   color: Colors.black,
@@ -43,7 +45,7 @@ class NoteItem extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  note.subTitle,
+                  note.subTitle ?? 'content',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black.withOpacity(0.5),
@@ -54,12 +56,11 @@ class NoteItem extends StatelessWidget {
                 iconSize: 25,
                 color: Colors.black,
                 onPressed: () {
-                    note.delete(); 
-                    // this object extends HIveObject in the model class so it is provided 
-                    //with methods like this to make it easier to deal with hive 
+                  note.delete();
+                  // this object extends HIveObject in the model class so it is provided
+                  //with methods like this to make it easier to deal with hive
 
-                    BlocProvider.of<GetNotesCubit>(context).getAllNotes();
-
+                  BlocProvider.of<GetNotesCubit>(context).getAllNotes();
                 },
                 icon: const Icon(
                   FontAwesomeIcons.trash,

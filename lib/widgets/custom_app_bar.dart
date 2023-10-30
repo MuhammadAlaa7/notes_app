@@ -4,9 +4,11 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     required this.iconData,
+    required this.onPressed,
   });
 
   final IconData iconData;
+  final void Function()? onPressed ; 
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
             icon: Icon(
               iconData,
             ),
-            onPressed: () {},
+            onPressed: onPressed,
           ),
         ),
       ],
