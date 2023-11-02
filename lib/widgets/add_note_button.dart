@@ -14,15 +14,19 @@ class AddNoteButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         backgroundColor: kPrimaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      child: isLoading ?  const CircularProgressIndicator(
-        color: Colors.black,
-       
+      child: isLoading ? const SizedBox(
+        height: 10,
+        width: 10,
+        child:  CircularProgressIndicator(
+          color: Colors.black,
+         
+        ),
       ) : const  Text(
         'Add',
         style: TextStyle(

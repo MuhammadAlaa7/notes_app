@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/model/note.dart';
+import 'package:notes_app/widgets/colors_palette.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
 import 'package:notes_app/widgets/input_field.dart';
 
@@ -11,7 +12,7 @@ class EditNoteView extends StatefulWidget {
     required this.note,
   });
 
-  final Note note;
+  final NoteModel note;
 
   @override
   State<EditNoteView> createState() => _EditNoteViewState();
@@ -21,6 +22,18 @@ class _EditNoteViewState extends State<EditNoteView> {
   // this is for temporary storing until it is finally stored in the note itself
   String? title;
   String? subTitle;
+  int? selectedColor;
+
+  dynamic receiveSelectedColor({Color? color}) {
+    // this function neeeds to be triggered when the color item tapped
+
+    setState(() {
+      // here i need the int value from the color not the color itself 
+      selectedColor = color!.value;
+    });
+
+    return selectedColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +49,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                   // BEFORE YOU SAVE ==>  store the title you got into the title in the note and subtitle as well
                   widget.note.title = title ?? widget.note.title;
                   widget.note.subTitle = subTitle ?? widget.note.subTitle;
+                  widget.note.color = selectedColor ?? widget.note.color;
                   // if it's null , put the last value it got
 
                   widget.note.save();
@@ -63,6 +77,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                   subTitle = value;
                 },
               ),
+              ColorsListView(receivedSelectedColor: receiveSelectedColor),
             ],
           ),
         ),

@@ -1,25 +1,25 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-
 import '../../model/note.dart';
 import 'notes_states.dart';
 
 class GetNotesCubit extends Cubit<GetNotesStates> {
+  //
+
   GetNotesCubit() : super(GetNotesInitialState());
 
-List<Note>? notes ;
+  List<NoteModel>? notes;
 
   void getAllNotes() {
-    var notesBox = Hive.box<Note>('notes');
+    //
 
-     notes = notesBox.values.toList();
+    var notesBox = Hive.box<NoteModel>('notes');
 
-     emit(GetNoteSuccessfully());
-  //   log('the note has been added');
-     print('the note has been added============================================================****');
-   
+    notes = notesBox.values.toList();
+
+    emit(GetNoteSuccessfully());
+
+    //
   }
 }
 

@@ -14,7 +14,7 @@ void main() async {
   // here I register the type of object i will store by its adapter
   Bloc.observer = MyBlocObserver();
   Hive.registerAdapter(NoteAdapter());
-  await Hive.openBox<Note>('notes'); // here we open a box into database hive
+  await Hive.openBox<NoteModel>('notes'); // here we open a box into database hive
   runApp(const NotesApp());
 }
 

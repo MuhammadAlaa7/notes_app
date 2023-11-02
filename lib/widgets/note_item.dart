@@ -12,7 +12,7 @@ class NoteItem extends StatelessWidget {
     required this.note,
   });
 
-  final Note note;
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class NoteItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 5),
         padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
         decoration: BoxDecoration(
-          color: Color(note.color), // const Color(0xffFFCD7C),
+          color: Color(note.color!), // const Color(0xffFFCD7C),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
