@@ -8,7 +8,7 @@ import 'package:notes_app/model/note.dart';
 import 'view/home_view.dart';
 
 void main() async {
-
+// git tests
 
   await Hive.initFlutter();
   // here I register the type of object i will store by its adapter
