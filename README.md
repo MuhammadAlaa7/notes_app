@@ -1,16 +1,35 @@
-# notes_app
 
-A new Flutter project.
+# Notes App 📝
 
-## Getting Started
+A Flutter app for creating, editing, and storing notes locally. This app uses Hive for efficient local storage and Cubit for state management to ensure a smooth and responsive experience.
 
-This project is a starting point for a Flutter application.
+## Features
+- **Create Notes:** Quickly add new notes with a title and content.
+- **Edit and Update Notes:** Easily modify any saved note.
+- **Delete Notes:** Remove notes when they are no longer needed.
+- **Local Storage:** Notes are stored locally on the device using Hive, making it accessible offline.
+- **State Management:** Cubit is used to manage the app's state, ensuring a responsive and organized UI.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+Here's a preview of the app screens:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Notes List
+![Notes List](screenshots/home.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Add Note
+![Add Note](screenshots/adding_note.png)
+
+### empty Notes
+![Empty Notes](screenshots/empty.png)
+
+
+| Notes List  | adding note | empty notes |
+|---------------|--------------|--------------|
+| ![Note list ](screenshots/home.png) | ![adding note](screenshots/adding_note.png) | ![empty notes](screenshots/empty.png) |
+
+
+```
+
+## Dependencies
+- `hive` and `hive_flutter` for local data storage
+- `flutter_bloc` for Cubit-based state management
