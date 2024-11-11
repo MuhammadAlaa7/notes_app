@@ -13,15 +13,6 @@ A Flutter app for creating, editing, and storing notes locally. This app uses Hi
 ## Screenshots
 Here's a preview of the app screens:
 
-### Notes List
-![Notes List](screenshots/home.png)
-
-### Add Note
-![Add Note](screenshots/adding_note.png)
-
-### empty Notes
-![Empty Notes](screenshots/empty.png)
-
 
 | Notes List  | adding note | empty notes |
 |---------------|--------------|--------------|
